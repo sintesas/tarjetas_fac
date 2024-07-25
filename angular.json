@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fronttarjetas",
+            "outputPath": "dist/tarjetas_fac",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -31,21 +31,32 @@
             ],
             "styles": [
               "src/styles.scss"
+              ,"node_modules/sweetalert2/dist/sweetalert2.css"
+              ,"others/fontawesome-free-6.2.1-web/css/fontawesome.css"
+              ,"others/fontawesome-free-6.2.1-web/css/brands.css"
+              ,"others/fontawesome-free-6.2.1-web/css/solid.css"
+              ,"others/fontawesome-free-6.3.0-web/css/fontawesome.css"
+              ,"others/fontawesome-free-6.3.0-web/css/brands.css"
+              ,"others/fontawesome-free-6.3.0-web/css/solid.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/sweetalert2/dist/sweetalert2.min.js",              
+              "node_modules/file-saver/dist/FileSaver.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 }
               ],
               "outputHashing": "all"

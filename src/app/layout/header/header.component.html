@@ -1,0 +1,130 @@
+<header class="app-header">
+    <div class="app-header-logo">
+        <img src="../../../assets/images/logo.png">
+    </div>
+    <div class="app-header-toggle pointer noselect" (click)="toggle()"></div>
+    <ul class="app-nav">
+        <!-- <li>
+            <div class="app-nav-item pointer noselect">
+                <i class="fa fa-bell fa-lg"></i>
+            </div>
+        </li>
+        <li>
+            <div class="app-nav-item pointer noselect">
+                <i class="fa fa-cog fa-lg"></i>
+            </div>
+        </li> -->
+        <!-- <li>
+            <div class="app-nav-item">
+                <img src="../../../assets/images/avatar.jpg">
+            </div>
+        </li> -->
+        <!-- <li (click)="toggleMenu()">
+            <span class="app-nav-user">{{currentUser.usuario}}</span>
+            <div class="app-nav-item pointer noselect" >
+                <i class="fa fa-sign-out-alt fa-lg"></i>
+            </div>
+        </li> -->
+    </ul>
+    <div class="logout-options" (click)="toggleMenu()">
+        <span class="app-nav-user" style="font-size: 16px;font-weight: bold; color: #FFFFFF; cursor: pointer;">
+            <i class="fa fa-user"></i>
+            {{currentUser.usuario}}
+        </span>
+        <div class="logout-menu" style="cursor:pointer" [ngClass]="{'show': showMenu}">
+            <a (click)="perfil()">
+                <i class="fa fa-address-card"></i> Ver perfil
+            </a>
+            <a (click)="logout()">
+                <i class="fa fa-sign-out-alt fa-lg"></i>Cerrar sesión
+            </a>
+        </div>
+    </div>
+</header>
+
+<app-modal [title]="'Perfil'" [show]="modalPerfil" [size]="'modal-md-w'" (close)="closePerfil()">
+    <div role="body">
+        <div class="inner-col">
+            <div class="col col100 title-row">
+                Datos Personales
+            </div>
+            <div class="line-col"></div>
+            <div class="col col33">
+                <div class="label-row">Nombre Completo</div>
+                <input type="text" [(ngModel)]="varPerfil.nombre_completo" disabled>
+            </div>
+            <div class="col col33">
+                <div class="label-row">Usuario</div>
+                <input type="text" [(ngModel)]="varPerfil.usuario" disabled>
+            </div>
+            <div class="col col33">
+                <div class="label-row">Correo</div>
+                <input type="text" [(ngModel)]="varPerfil.email" disabled>
+            </div>
+            <div class="col col100 title-row">
+                Roles
+            </div>
+            <div class="line-col"></div>
+            <div class="col col33 table-content">
+                <table class="table flex-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre Rol</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody class="scroll">
+                        <tr *ngFor="let item of roles; let i = index">
+                            <td>{{item.rol}}</td>
+                            <td>
+                                <i class="fa fa-1m5x fa-check-circle" *ngIf="item.activo == 'S'"></i>
+                                <i class="fa fa-1m5x fa-times-circle" *ngIf="item.activo == 'N'"></i>
+                            </td>
+                        </tr>
+                        <tr *ngIf="roles?.length == 0">
+                            <div class="dbempty">No hay datos.</div>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination-content">
+                    <div class="col col100">
+                        Cantidad de Roles: {{roles?.length}}
+                    </div>
+                </div>
+            </div>
+            <div class="col col100 title-row">
+                Cambiar Contraseña
+            </div>
+            <div class="line-col"></div>
+            <!-- <div class="col col33">
+                <div class="label-row">Contraseña Actual</div>
+                <input type="password" [(ngModel)]="varPerfil.password">
+            </div> -->
+            <div class="col col33">
+                <div class="label-row">Nueva Contraseña</div>
+                <input type="password" [(ngModel)]="varPerfil.passwordNew">
+            </div>
+            <div class="col col33">
+                <div class="label-row">Confirmar Nueva Contraseña</div>
+                <input type="password" [(ngModel)]="varPerfil.password2">
+            </div>
+            <div class="col col100">
+                <button type="button" class="btn btn-blue" (click)="ChangePassword()">Cambiar Contraseña</button>
+            </div>
+            <div class="line-col"></div>
+            <!-- <div class="col col50">
+                <div class="label-row">Descripción</div>
+                <input type="text" [(ngModel)]="model.varRol.descripcion">
+            </div>
+            <div class="col col10">
+                <div class="label-row">Activo</div>
+                <div class="checkbox-component">
+                    <label>
+                        <input type="checkbox" checked="checked" [(ngModel)]="model.varRol.activo">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</app-modal>
